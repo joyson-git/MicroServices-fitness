@@ -14,10 +14,10 @@ public class UserValidationService {
    private final WebClient userServiceWebClient;
 
     public boolean validateUser(String userId) {
-   //     log.info("Calling User Validation API for userId: {}", userId);
+    log.info("Calling User Validation API for userId: {}", userId);
        try{
             return userServiceWebClient.get()
-                    .uri("/api/users/{userId}/validate", userId)
+                    .uri("/api/user/{userId}/validate", userId)
                     .retrieve()
                     .bodyToMono(Boolean.class)
                     .block();

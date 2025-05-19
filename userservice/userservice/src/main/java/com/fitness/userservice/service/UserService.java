@@ -26,11 +26,9 @@ public class UserService {
             userResponse.setUpdatedAt(existingUser.getUpdatedAt());
             return userResponse;
         }
-
         User user = new User();
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
-
         User savedUser = repository.save(user);
         UserResponse userResponse = new UserResponse();
         userResponse.setId(savedUser.getId());
@@ -38,14 +36,12 @@ public class UserService {
         userResponse.setEmail(savedUser.getEmail());
         userResponse.setCreatedAt(savedUser.getCreatedAt());
         userResponse.setUpdatedAt(savedUser.getUpdatedAt());
-
         return userResponse;
     }
 
     public UserResponse getUserProfile(String userId) {
         User user = repository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User Not Found"));
-
         UserResponse userResponse = new UserResponse();
         userResponse.setId(user.getId());
         userResponse.setPassword(user.getPassword());
@@ -57,7 +53,7 @@ public class UserService {
     }
 
     public Boolean existByUserId(String userId) {
-        log.info("Calling User Validation API for userId: {}", userId);
+       log.info("Calling User Validation API for userId: {}", userId);
         return repository.existsById(userId); // Changed to existsById
     }
 }
